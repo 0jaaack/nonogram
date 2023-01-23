@@ -12,7 +12,7 @@ class App extends React.Component {
         <SideBar />
         <Routes>
           <Route path="/puzzles" element={<PuzzleCollection />} />
-          <Route path="/puzzles/:puzzleSlug" element={<Puzzle />} />
+          <Route path="/puzzles/:slug" element={<Puzzle />} />
           <Route path="/" element={<Navigate to="/puzzles" />} />
         </Routes>
       </div>

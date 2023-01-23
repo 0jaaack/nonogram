@@ -1,17 +1,17 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import PuzzleRow from "./PuzzleRow";
 import PuzzleColumn from "./PuzzleColumn";
 import PuzzleBoard from "./PuzzleBoard";
+import withParams from "../hoc/withParams";
 
 class Puzzle extends React.Component {
   render() {
-    const column = [[2, 1], [3], [3], [2], [2]];
-    const row = [[4], [4], [2], [1], [1, 1]];
-
+    const { title, row, column } = this.props.puzzle;
     return (
       <div className="flex flex-col overflow-scroll">
-        <h2>보드 타이틀</h2>
+        <h2>{title}</h2>
         <div className="flex">
           <PuzzleRow value={row} />
           <div>
@@ -24,4 +24,10 @@ class Puzzle extends React.Component {
   }
 }
 
-export default Puzzle;
+const ConnectedPuzzle = connect(
+  ({ puzzle }, { params }) => ({
+    puzzle: puzzle.puzzles[params.slug],
+  }),
+)(Puzzle);
+
+export default withParams(ConnectedPuzzle);

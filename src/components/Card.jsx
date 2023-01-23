@@ -1,14 +1,22 @@
 import React from "react";
+import withNavigate from "../hoc/withNavigate";
 
 class Card extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
-      <div>
-        <div>썸네일1</div>
-        <h3>퍼즐 제목1</h3>
+      <div
+        className="w-20 h-20 border cursor-pointer"
+        onClick={() => this.props.navigate(`/puzzles/${this.props.value.title}`)}
+      >
+        <div>{this.props.value.size}</div>
+        <h3>{this.props.value.title}</h3>
       </div>
     );
   }
 }
 
-export default Card;
+export default withNavigate(Card);
