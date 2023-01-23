@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 
-import GameList from "./GameList/GameList";
-import SideBar from "./@shared/SideBar";
+import GameList from "./components/GameList";
+import SideBar from "./components/SideBar";
 
 class App extends React.Component {
   render() {
