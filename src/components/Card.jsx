@@ -1,6 +1,6 @@
 import React from "react";
 
-class GameCardCell extends React.Component {
+class Card extends React.Component {
   render() {
     return (
       <div>
@@ -11,4 +11,4 @@ class GameCardCell extends React.Component {
   }
 }
 
-export default GameCardCell;
+export default Card;

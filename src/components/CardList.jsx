@@ -1,17 +1,17 @@
 import React from "react";
-import GameCardCell from "./GameCardCell";
+import Card from "./Card";
 
-class GameByOptionList extends React.Component {
+class CardList extends React.Component {
   render() {
     return (
       <div>
         <h2>10 x 10</h2>
         <ul className="flex">
           <li>
-            <GameCardCell />
+            <Card />
           </li>
           <li>
-            <GameCardCell />
+            <Card />
           </li>
         </ul>
       </div>
@@ -19,4 +19,4 @@ class GameByOptionList extends React.Component {
   }
 }
 
-export default GameByOptionList;
+export default CardList;

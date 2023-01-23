@@ -1,8 +1,9 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
-import GameList from "./components/GameList";
 import SideBar from "./components/SideBar";
+import PuzzleCollection from "./components/PuzzleCollection";
+import Puzzle from "./components/Puzzle";
 
 class App extends React.Component {
   render() {
@@ -10,8 +11,9 @@ class App extends React.Component {
       <div className="flex w-screen h-screen overflow-scroll bg-nonogram-black">
         <SideBar />
         <Routes>
-          <Route path="/games" element={<GameList />} />
-          <Route path="/" element={<Navigate to="/games" />} />
+          <Route path="/puzzles" element={<PuzzleCollection />} />
+          <Route path="/puzzles/:puzzleSlug" element={<Puzzle />} />
+          <Route path="/" element={<Navigate to="/puzzles" />} />
         </Routes>
       </div>
     );
