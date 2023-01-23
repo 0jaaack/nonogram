@@ -1,6 +1,12 @@
+import { Routes, Route, Navigate } from "react-router-dom";
+import GameList from "./GameList/GameList";
+
 function App() {
   return (
-    <div>노노그램</div>
+    <Routes>
+      <Route path="/games" element={<GameList />} />
+      <Route path="/" element={<Navigate to="/games" />} />
+    </Routes>
   );
 }
 
