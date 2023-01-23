@@ -6,7 +6,7 @@ import SideBar from "./@shared/SideBar";
 class App extends React.Component {
   render() {
     return (
-      <div>
+      <div className="flex w-screen h-screen overflow-scroll bg-nonogram-black">
         <SideBar />
         <Routes>
           <Route path="/games" element={<GameList />} />
