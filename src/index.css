@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  color: #E5E5E5;
+  font: 300 16px "sans-serif";
+}
