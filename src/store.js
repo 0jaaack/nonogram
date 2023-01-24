@@ -6,6 +6,6 @@ const reducer = combineReducers({
   puzzle: puzzleReducer,
 });
 
-const store = createStore(reducer, applyMiddleware(logger));
+const store = createStore(reducer, {}, applyMiddleware(logger));
 
 export default store;
