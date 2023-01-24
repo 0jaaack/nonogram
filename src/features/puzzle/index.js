@@ -1,5 +1,5 @@
-// import { } from "./actions";
+import { checkBoard } from "./actions";
 import puzzleReducer from "./reducers";
 
-// export { };
+export { checkBoard };
 export default puzzleReducer;
