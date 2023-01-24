@@ -1,14 +1,14 @@
 import { CHECK_BOARD } from "./types";
 import PUZZLE from "../../constants/puzzle";
 
-const c = (count) => ({
+const lineCount = (count) => ({
   count,
   isDone: false,
 });
 
-const toCount = (line) => {
+const toLineCount = (line) => {
   return line.map((counts) => {
-    return counts.map((count) => c(count));
+    return counts.map((count) => lineCount(count));
   });
 };
 
@@ -19,8 +19,8 @@ const initialState = {
       slug: "talk",
       size: "size1",
       cellSize: 6,
-      column: toCount([[7], [2, 2, 1], [4, 1], [1], [5], [1, 1], [1, 1, 1, 1], [1, 1, 2], [1, 2], [5]]),
-      row: toCount([[6], [1, 1], [1, 2, 1], [2, 1, 1], [3, 3, 2], [1, 1, 2], [4, 2], [3], [1], [3]]),
+      column: toLineCount([[7], [2, 2, 1], [4, 1], [1], [5], [1, 1], [1, 1, 1, 1], [1, 1, 2], [1, 2], [5]]),
+      row: toLineCount([[6], [1, 1], [1, 2, 1], [2, 1, 1], [3, 3, 2], [1, 1, 2], [4, 2], [3], [1], [3]]),
       board: Array.from({ length: 10 }, () => Array.from({ length: 10 }, () => null)),
       isPuzzleDone: false,
     },
@@ -47,18 +47,18 @@ function puzzleReducer(state = initialState, action) {
 
       const boardRow = checkingBoard[x].slice();
       const puzzleRow = checkingPuzzle.row[x].slice();
-      const puzzleRowCounts = puzzleRow.map((c) => c.count);
+      const puzzleRowCounts = puzzleRow.map((lineCount) => lineCount.count);
 
       if (puzzleRowCounts.join() === getLineCount(boardRow).join()) {
-        puzzleRow.forEach((c) => {
-          c.isDone = true;
+        puzzleRow.forEach((lineCount) => {
+          lineCount.isDone = true;
         });
       } else {
         const rowStartLineCounts = getStartLineCount(boardRow);
         const rowEndLineCounts = getStartLineCount(boardRow.slice().reverse());
 
-        for (const [countIdx, c] of puzzleRow.entries()) {
-          c.isDone = c.count === rowStartLineCounts[countIdx];
+        for (const [countIdx, lineCount] of puzzleRow.entries()) {
+          lineCount.isDone = lineCount.count === rowStartLineCounts[countIdx];
         };
         for (const [countIdx, count] of rowEndLineCounts.entries()) {
           const puzzleRowIdx = puzzleRow.length - countIdx - 1;
@@ -74,18 +74,18 @@ function puzzleReducer(state = initialState, action) {
 
       const boardColumn = checkingBoard.map((row) => row[y]);
       const puzzleColumn = checkingPuzzle.column[y].slice();
-      const puzzleColumnCounts = puzzleColumn.map((c) => c.count);
+      const puzzleColumnCounts = puzzleColumn.map((lineCount) => lineCount.count);
 
       if (puzzleColumnCounts.join() === getLineCount(boardColumn).join()) {
-        puzzleColumn.forEach((c) => {
-          c.isDone = true;
+        puzzleColumn.forEach((lineCount) => {
+          lineCount.isDone = true;
         });
       } else {
         const columnStartLineCounts = getStartLineCount(boardColumn);
         const columnEndLineCounts = getStartLineCount(boardColumn.slice().reverse());
 
-        for (const [countIdx, c] of puzzleColumn.entries()) {
-          c.isDone = c.count === columnStartLineCounts[countIdx];
+        for (const [countIdx, lineCount] of puzzleColumn.entries()) {
+          lineCount.isDone = lineCount.count === columnStartLineCounts[countIdx];
         };
         for (const [countIdx, count] of columnEndLineCounts.entries()) {
           const puzzleColumnIdx = puzzleColumn.length - countIdx - 1;
