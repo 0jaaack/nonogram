@@ -9,11 +9,14 @@ class PuzzleColumn extends React.Component {
     return (
       <div className="flex">
         {this.props.value.map((column, index) => (
-          <div className="flex flex-col justify-end w-6">
-            {column.map((colCount, index) => (
-              <div key={colCount + index.toString()}>
-                {colCount}
-              </div>
+          <div key={index} className="flex flex-col justify-end w-6">
+            {column.map((colInfo, index) => (
+              <span
+                key={colInfo.count + index.toString()}
+                className={colInfo.isDone ? "line-through" : "no-underline"}
+              >
+                {colInfo.count}
+              </span>
             ))}
           </div>
         ))}

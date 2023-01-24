@@ -9,11 +9,14 @@ class PuzzleRow extends React.Component {
     return (
       <div className="flex flex-col justify-end">
         {this.props.value.map((row, index) => (
-          <div className="flex justify-end h-6">
-            {row.map((rowCount, index) => (
-              <div key={rowCount + index.toString()}>
-                {rowCount}
-              </div>
+          <div key={index} className="flex justify-end h-6">
+            {row.map((rowInfo, index) => (
+              <span
+                key={rowInfo.count + index.toString()}
+                className={rowInfo.isDone ? "line-through" : "no-underline"}
+              >
+                {rowInfo.count}
+              </span>
             ))}
           </div>
         ))}
