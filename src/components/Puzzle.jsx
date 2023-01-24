@@ -7,6 +7,12 @@ import PuzzleBoard from "./PuzzleBoard";
 import withParams from "../hoc/withParams";
 
 class Puzzle extends React.Component {
+  componentDidUpdate() {
+    if (this.props.puzzle.isPuzzleDone) {
+      alert("퍼즐 완료!");
+    }
+  }
+
   render() {
     const { title, row, column } = this.props.puzzle;
     return (
