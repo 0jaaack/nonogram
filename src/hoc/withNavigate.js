@@ -5,9 +5,11 @@ function withNavigate(Component) {
   return class extends React.Component {
     constructor(props) {
       super(props);
-    }
 
-    state = { path: null };
+      this.state = {
+        path: null,
+      };
+    }
 
     render() {
       if (!!this.state.path) {
