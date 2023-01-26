@@ -2,17 +2,17 @@ import React from "react";
 import PUZZLE from "../constants/puzzle";
 
 class PuzzleCell extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const cellProps = {
       "data-x": this.props.x,
       "data-y": this.props.y,
       "data-cell-type": this.props.cellType,
+      style: {
+        width: `${this.props.cellSize * 0.25}rem`,
+        height: `${this.props.cellSize * 0.25}rem`,
+      },
     };
-    const cellClassNames = `border cursor-pointer bg-white w-${this.props.cellSize} h-${this.props.cellSize}`;
+    const cellClassNames = `border cursor-pointer bg-white`;
 
     switch (this.props.cellType) {
       case PUZZLE.CELL_TYPE.EMPTY:
@@ -29,6 +29,8 @@ class PuzzleCell extends React.Component {
             {...cellProps}
             className={cellClassNames}
             style={{
+              width: `${this.props.cellSize * 0.25}rem`,
+              height: `${this.props.cellSize * 0.25}rem`,
               background: `
                 linear-gradient(
                   135deg,

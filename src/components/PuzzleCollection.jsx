@@ -9,9 +9,9 @@ class PuzzleCollection extends React.Component {
 
   render() {
     return (
-      <div className="flex flex-col w-full h-full py-14 px-8">
+      <div className="overflow-scroll flex flex-col w-full h-full py-14 px-8">
         {this.props.allSizeIds.map((sizeId) => (
-          <CardList option={sizeId} />
+          <CardList key={sizeId} option={sizeId} />
         ))}
       </div>
     );
