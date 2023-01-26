@@ -9,18 +9,19 @@ import withParams from "../hoc/withParams";
 
 class Puzzle extends React.Component {
   render() {
-    const { title, row, column, isPuzzleDone } = this.props.puzzle;
+    const puzzleTitle = this.props.params.title.replace(/-/g, " ");
+    const { row, column, size, isPuzzleDone } = this.props.puzzle;
 
     return (
       <>
         {isPuzzleDone && <CompletePuzzleModal />}
         <div className="flex flex-col w-full h-full px-10 py-20 overflow-scroll">
-          <h2 className="text-5xl font-bold">{title}</h2>
+          <h2 className="text-5xl font-bold">{puzzleTitle}</h2>
           <div className="flex p-10">
-            <PuzzleRow value={row} />
+            <PuzzleRow value={row} size={size.cell} />
             <div>
-              <PuzzleColumn value={column} />
-              <PuzzleBoard row={row.length} column={column.length} cellSize="10" />
+              <PuzzleColumn value={column} size={size.cell} />
+              <PuzzleBoard />
             </div>
           </div>
         </div>
@@ -31,7 +32,10 @@ class Puzzle extends React.Component {
 
 const ConnectedPuzzle = connect(
   ({ puzzle }, { params }) => ({
-    puzzle: puzzle.puzzles[params.slug],
+    puzzle: {
+      ...puzzle.puzzles[params.title],
+      size: puzzle.sizes.byId[puzzle.puzzles[params.title].size],
+    },
   }),
 )(Puzzle);
 
