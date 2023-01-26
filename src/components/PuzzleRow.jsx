@@ -1,15 +1,11 @@
 import React from "react";
 
 class PuzzleRow extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div className="flex flex-col justify-end">
         {this.props.value.map((row, index) => (
-          <div key={index} className="flex items-center justify-end h-10 pr-2 text-xl">
+          <div key={index} className="flex items-center justify-end pr-2 text-xl" style={{ height: `${this.props.size * 0.25}rem` }}>
             {row.map((rowInfo, index) => (
               <span
                 key={rowInfo.count + index.toString()}

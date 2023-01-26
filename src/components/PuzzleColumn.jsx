@@ -1,15 +1,11 @@
 import React from "react";
 
 class PuzzleColumn extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div className="flex">
         {this.props.value.map((column, index) => (
-          <div key={index} className="flex flex-col justify-end items-center w-10 text-xl">
+          <div key={index} className="flex flex-col justify-end items-center text-xl" style={{ width: `${this.props.size * 0.25}rem` }}>
             {column.map((colInfo, index) => (
               <span
                 key={colInfo.count + index.toString()}
