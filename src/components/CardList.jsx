@@ -3,21 +3,20 @@ import { connect } from "react-redux";
 import Card from "./Card";
 
 class CardList extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div className="pb-4">
         <h2 className="text-3xl font-bold">
-          {this.props.size}
+          {this.props.size.x}
+          {" X "}
+          {this.props.size.y}
         </h2>
-        <ul className="flex gap-4 p-2 pt-3">
+        <ul className="flex gap-4 p-5 pt-3 pb-8 overflow-y-scroll">
           {this.props.puzzles.map((puzzle) => (
             <Card
-              value={puzzle}
-              path={`/puzzles/${puzzle.slug}`}
+              key={puzzle.title}
+              puzzle={puzzle}
+              path={`/puzzles/${puzzle.title}`}
             />
           ))}
         </ul>
