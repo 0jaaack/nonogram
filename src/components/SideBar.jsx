@@ -17,12 +17,6 @@ class SideBar extends React.Component {
         >
           Home
         </Link>
-        <Link
-          to="/puzzles"
-          className="text-lg pl-4 py-2"
-        >
-          최근 퍼즐로 가기
-        </Link>
       </nav>
     );
   }
