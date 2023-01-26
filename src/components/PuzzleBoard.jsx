@@ -118,8 +118,8 @@ class PuzzleBoard extends React.Component {
   }
 
   render() {
-    const getCellType = (x, y) => {
-      return this.props.board?.[x]?.[y] ?? PUZZLE.CELL_TYPE.EMPTY;
+    const getCellType = (xPoint, yPoint) => {
+      return this.props.board?.[xPoint]?.[yPoint] ?? PUZZLE.CELL_TYPE.EMPTY;
     };
 
     return (
@@ -131,15 +131,15 @@ class PuzzleBoard extends React.Component {
         onMouseOver={this.handleBoardDrag}
         onContextMenu={this.handleBoardContextMenu}
       >
-        {Array.from(Array(this.props.row), (_, y) => (
+        {Array.from({ length: this.props.size.y }, (_, y) => (
           <div className={`flex flex-col`} key={y}>
-            {Array.from(Array(this.props.column), (_, x) => (
+            {Array.from({ length: this.props.size.x }, (_, x) => (
               <PuzzleCell
                 key={`${x}${y}`}
                 x={x}
                 y={y}
                 cellType={getCellType(x, y)}
-                cellSize={this.props.cellSize}
+                cellSize={this.props.size.cell}
               />
             ))}
           </div>
@@ -151,14 +151,15 @@ class PuzzleBoard extends React.Component {
 
 const ConnectedPuzzleBoard = connect(
   ({ puzzle }, { params }) => ({
-    board: puzzle.puzzles[params.slug].board,
+    board: puzzle.puzzles[params.title].board,
+    size: puzzle.sizes.byId[puzzle.puzzles[params.title].size],
   }),
   (dispatch, { params }) => ({
     checkBoard: (x, y, cellType) => dispatch(checkBoard({
       x,
       y,
       cellType,
-      puzzle: params.slug,
+      puzzle: params.title,
     })),
   }),
 )(PuzzleBoard);
