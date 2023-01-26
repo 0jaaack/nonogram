@@ -2,27 +2,15 @@ import React from "react";
 import PUZZLE from "../constants/puzzle";
 
 class PuzzleCell extends React.Component {
-  handleCellLeftClick = () => {
-    if (this.props.cellType !== PUZZLE.CELL_TYPE.EMPTY) {
-      return this.props.onBoardClick(PUZZLE.CELL_TYPE.EMPTY);
-    }
-    this.props.onBoardClick(PUZZLE.CELL_TYPE.FILL);
-  };
-
-  handleCellRightClick = (event) => {
-    event.preventDefault();
-    if (this.props.cellType !== PUZZLE.CELL_TYPE.EMPTY) {
-      return this.props.onBoardClick(PUZZLE.CELL_TYPE.EMPTY);
-    }
-    this.props.onBoardClick(PUZZLE.CELL_TYPE.MARK);
-  };
+  constructor(props) {
+    super(props);
+  }
 
   render() {
-    const handleCellLeftClick = this.handleCellLeftClick.bind(this);
-    const handleCellRightClick = this.handleCellRightClick.bind(this);
     const cellProps = {
-      onClick: handleCellLeftClick,
-      onContextMenu: handleCellRightClick,
+      "data-x": this.props.x,
+      "data-y": this.props.y,
+      "data-cell-type": this.props.cellType,
     };
     const cellClassNames = `border cursor-pointer bg-white w-${this.props.cellSize} h-${this.props.cellSize}`;
 
