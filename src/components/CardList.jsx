@@ -9,9 +9,11 @@ class CardList extends React.Component {
 
   render() {
     return (
-      <div>
-        <h2>{this.props.size}</h2>
-        <ul className="flex">
+      <div className="pb-4">
+        <h2 className="text-3xl font-bold">
+          {this.props.size}
+        </h2>
+        <ul className="flex gap-4 p-2 pt-3">
           {this.props.puzzles.map((puzzle) => (
             <Card
               value={puzzle}

@@ -9,11 +9,11 @@ class Card extends React.Component {
   render() {
     return (
       <div
-        className="w-20 h-20 border cursor-pointer"
+        className="flex items-center justify-center w-48 h-60 bg-gradient-to-tr from-gray-900 to-cyan-800 rounded-xl cursor-pointer"
+        style={{ boxShadow: "rgba(155, 155, 144, 0.2) 0px 7px 29px 0px" }}
         onClick={() => this.props.navigate(`/puzzles/${this.props.value.title}`)}
       >
-        <div>{this.props.value.size}</div>
-        <h3>{this.props.value.title}</h3>
+        <h3 className="text-3xl italic uppercase font-bold text-center">{this.props.value.title}</h3>
       </div>
     );
   }
